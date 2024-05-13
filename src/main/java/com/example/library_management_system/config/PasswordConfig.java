@@ -1,4 +1,4 @@
-package com.ajosavings.ajosavigs.configuration;
+package com.example.library_management_system.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

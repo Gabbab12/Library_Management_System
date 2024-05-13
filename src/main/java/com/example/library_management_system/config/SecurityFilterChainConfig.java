@@ -1,7 +1,5 @@
-package com.ajosavings.ajosavigs.security;
+package com.example.library_management_system.config;
 
-import com.ajosavings.ajosavigs.configuration.JwtFilterConfig;
-import com.ajosavings.ajosavigs.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +15,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
 @RequiredArgsConstructor
@@ -47,20 +45,11 @@ public class SecurityFilterChainConfig {
                                         "/webjars/**",
                                         "/swagger-ui.html")
                                 .permitAll()
-
-                                .requestMatchers(POST,"/api/v1/auth/userReg").permitAll()
-                                .requestMatchers("/api/v1/signup/**", "/api/v1/transaction/**","api/savings/**").permitAll()
-
-                                .requestMatchers(HttpMethod.POST, "/api/v1/signup/normal").permitAll()
-                                .requestMatchers("/api/v1/auth/**", "/api/message/**").permitAll()
-                                .requestMatchers("/api/v1/**").permitAll()
-                                .requestMatchers("/api/v1/signup/verify-otp").permitAll()
-                                .requestMatchers("/api/v1/auth/**", "/update/**", "api/ajoGroup/**").permitAll()
-                                .requestMatchers(POST,"/api/v1/auth/registered-user","/api/v1/auth/logout").authenticated()
-                                .requestMatchers(HttpMethod.POST, "/api/v1/signup/normal", "api/v1/auth/forgot").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/api/v1/signup/google").permitAll()
-                                .requestMatchers(HttpMethod.POST, "api/v1/user/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "api/v1/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/api/v1/patron/**").permitAll()
+                                .requestMatchers(POST,"/api/v1/patron/login").authenticated()
+                                .requestMatchers("/api/v1/book/**").permitAll()
+                                .requestMatchers("api/v1/record/**").permitAll()
+                                .requestMatchers("api/v1/**").permitAll()
 
                 )
                 .sessionManagement((session) ->
@@ -75,13 +64,14 @@ public class SecurityFilterChainConfig {
 
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(List.of("http://localhost:5174", "http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173"));
-        configuration.setAllowedMethods(List.of("POST", "GET", "DELETE", "PUT", "PATCH"));
-        configuration.setAllowedHeaders(List.of("*"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    public CorsConfigurationSource corsConfigurationSource() {
+        final CorsConfiguration configuration = new CorsConfiguration();
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(false);
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.addAllowedHeader("*");
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }

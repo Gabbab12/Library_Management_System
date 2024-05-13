@@ -1,4 +1,4 @@
-package com.ajosavings.ajosavigs.configuration;
+package com.example.library_management_system.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

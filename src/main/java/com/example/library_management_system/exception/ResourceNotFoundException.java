@@ -1,7 +1,6 @@
-package com.ajosavings.ajosavigs.exception;
+package com.example.library_management_system.exception;
 
 import lombok.Data;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 @Data
 public class ResourceNotFoundException extends RuntimeException {

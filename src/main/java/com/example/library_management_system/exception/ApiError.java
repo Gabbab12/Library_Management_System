@@ -1,4 +1,4 @@
-package com.ajosavings.ajosavigs.exception;
+package com.example.library_management_system.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

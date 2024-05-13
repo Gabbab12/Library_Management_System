@@ -1,9 +1,8 @@
-package com.ajosavings.ajosavigs.exception;
+package com.example.library_management_system.exception;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+
 @Data
 public class UserNotFoundException extends RuntimeException{
     private  String message;

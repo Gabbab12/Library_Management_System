@@ -1,4 +1,4 @@
-package com.simple_sales_management.configuration;
+package com.example.library_management_system.config;
 
 
 
@@ -28,7 +28,7 @@ public class SwaggerConfiguration {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.clearwage"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.library_management_system"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
@@ -56,8 +56,8 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("ClearWage API Document")
-                .description("Wage Management").version("1.0").build();
+        return new ApiInfoBuilder().title("Library Management API Document")
+                .description("Library Management").version("1.0").build();
     }
 
 }
